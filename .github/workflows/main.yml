@@ -1,0 +1,30 @@
+name: Generate Snake Animation
+
+on:
+  schedule: # Run at 6:00 UTC every day
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Generate Snake Game from GitHub Contribution Grid
+        uses: Platane/snk@v3.2.0
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          gif_out_path: dist/github-contribution-grid-snake.gif
+          svg_out_path: dist/github-contribution-grid-snake.svg
+
+      - name: Push Generated Snake
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: output
+          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: "Generate snake animation"
+          directory: dist
