@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated to use Node.js 20
 
       - name: Generate Snake Game from GitHub Contribution Grid
         uses: Platane/snk@v3.2.0
@@ -24,7 +24,6 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: output
-          force: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: "Generate snake animation"
           directory: dist
