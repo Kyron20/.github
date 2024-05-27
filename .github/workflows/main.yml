@@ -17,13 +17,11 @@ jobs:
         uses: Platane/snk@v3.2.0
         with:
           github_user_name: ${{ github.repository_owner }}
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          gif_out_path: github-contribution-grid-snake.gif  # Change to generate the files in the root directory
+          svg_out_path: github-contribution-grid-snake.svg
 
       - name: Push Generated Snake
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: output
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: "Generate snake animation"
-          directory: dist
